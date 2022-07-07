@@ -2,7 +2,7 @@ defmodule ElixirTicTacToeBasicTest do
   use ExUnit.Case
   doctest ElixirTicTacToeBasic
 
-  test "greets the world" do
-    assert ElixirTicTacToeBasic.hello() == :world
+  test "welcome" do
+    assert ElixirTicTacToeBasic.welcome() == :ok
   end
 end
