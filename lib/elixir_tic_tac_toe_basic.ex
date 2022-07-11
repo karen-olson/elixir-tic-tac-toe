@@ -1,11 +1,9 @@
 defmodule ElixirTicTacToeBasic do
   @moduledoc """
-  Basic Tic Tac Toe Game
+  Plays a Basic Tic Tac Toe Game
   """
 
-  def welcome do
-    IO.puts("Welcome to Tic Tac Toe!")
-  end
-end
+  game = %Game{}
 
-ElixirTicTacToeBasic.welcome()
+  Main.play(game)
+end
