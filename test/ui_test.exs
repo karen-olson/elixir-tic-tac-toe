@@ -1,11 +1,11 @@
-defmodule MainTest do
+defmodule UiTest do
   use ExUnit.Case
-  doctest Main
+  doctest Ui
 
-  test "it plays the game" do
+  test "it displays messages to the user when the game starts" do
     test_game = %TestGame{}
 
-    test_game = Main.play(test_game)
+    test_game = Ui.start_game(test_game)
 
     assert Enum.reverse(test_game.events) == [
              "Displayed message, 'Welcome to Tic Tac Toe!'",

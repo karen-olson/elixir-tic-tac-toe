@@ -1,18 +1,16 @@
 defmodule Game do
-  defstruct [
-    board: %{
-      {0, 0} => 1,
-      {0, 1} => 2,
-      {0, 2} => 3,
-      {1, 0} => 4,
-      {1, 1} => 5,
-      {1, 2} => 6,
-      {2, 0} => 7,
-      {2, 1} => 8,
-      {2, 2} => 9
-    },
-    current_player: "X",
-  ]
+  defstruct board: %{
+              {0, 0} => 1,
+              {0, 1} => 2,
+              {0, 2} => 3,
+              {1, 0} => 4,
+              {1, 1} => 5,
+              {1, 2} => 6,
+              {2, 0} => 7,
+              {2, 1} => 8,
+              {2, 2} => 9
+            },
+            current_player: "X"
 
   def format_board(board) do
     """
@@ -36,5 +34,4 @@ defmodule Game do
       display_message(game, formatted_board)
     end
   end
-
 end
