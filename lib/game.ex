@@ -1,4 +1,10 @@
 defmodule Game do
+  @moduledoc """
+  This module defines a Game struct. When it implements protocols,
+  it triggers the real game behavior, as opposed to the TestGame struct
+  which logs the events that occur.
+  """
+
   defstruct board: %{
               {0, 0} => 1,
               {0, 1} => 2,

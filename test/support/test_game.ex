@@ -1,4 +1,10 @@
 defmodule TestGame do
+  @moduledoc """
+  This module defines a TestGame struct which implements the log string testing pattern.
+  When it implements protocols, it logs the events that occurred rather than triggering
+  the same behavior as the Game struct would.
+  """
+
   defstruct board: %{
               {0, 0} => 1,
               {0, 1} => 2,
