@@ -13,16 +13,25 @@ defmodule TestGame do
             current_player: "X",
             events: []
 
+  defimpl Ui do
+    def start_game(game) do
+      game
+      |> Console.display_message("welcome")
+      |> Console.display_message("choose a space")
+      |> Console.display_board()
+    end
+  end
+
   defimpl Console do
     def display_message(game, message) do
       Map.update(game, :events, [], fn events ->
-        ["Displayed message, '#{message}'" | events]
+        [message | events]
       end)
     end
 
     def display_board(game) do
       Map.update(game, :events, [], fn events ->
-        ["Displayed board" | events]
+        ["display board" | events]
       end)
     end
   end

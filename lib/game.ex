@@ -1,9 +1,4 @@
 defmodule Game do
-  @moduledoc """
-  Implements protocols according to the Game data type,
-  as opposed to the TestGame data type.
-  """
-
   defstruct board: %{
               {0, 0} => 1,
               {0, 1} => 2,
@@ -16,6 +11,15 @@ defmodule Game do
               {2, 2} => 9
             },
             current_player: "X"
+
+  defimpl Ui do
+    def start_game(game) do
+      game
+      |> Console.display_message("\nWelcome to Tic Tac Toe!\n")
+      |> Console.display_message("Please choose a space (1-9):\n")
+      |> Console.display_board()
+    end
+  end
 
   defimpl Console do
     def display_message(game, message) do

@@ -1,4 +1,4 @@
 defprotocol Console do
-  def display_message(state, message)
-  def display_board(state)
+  def display_message(game, message)
+  def display_board(game)
 end

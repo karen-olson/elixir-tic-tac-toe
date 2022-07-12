@@ -1,8 +1,4 @@
 defmodule Board do
-  @moduledoc """
-  Returns a formatted 3x3 tic tac toe board
-  """
-
   def format_board(board) do
     """
      #{board[{0, 0}]} | #{board[{0, 1}]} | #{board[{0, 2}]}
