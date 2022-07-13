@@ -12,17 +12,19 @@ defmodule ElixirTicTacToeBasicTest do
     end
   end
 
-  test "it starts the game" do
-    config =
-      ElixirTicTacToeBasic.start(%ElixirTicTacToeBasic{
-        ui: TestUI
-      })
+  describe "#start" do
+    test "it starts the game" do
+      config =
+        ElixirTicTacToeBasic.start(%ElixirTicTacToeBasic{
+          ui: TestUI
+        })
 
-    events = Map.get(config, :events, []) |> Enum.reverse()
+      events = Map.get(config, :events, []) |> Enum.reverse()
 
-    assert events == [
-             "welcome",
-             "display board"
-           ]
+      assert events == [
+               "welcome",
+               "display board"
+             ]
+    end
   end
 end

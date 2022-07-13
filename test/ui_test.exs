@@ -2,7 +2,7 @@ defmodule UITest do
   use ExUnit.Case
   alias ElixirTicTacToeBasic.UI
 
-  describe "#welcome/2" do
+  describe "#welcome/1" do
     test "it welcomes the user" do
       %{messages: messages} = UI.welcome(%{}, fn message -> String.upcase(message) end)
 
@@ -19,7 +19,7 @@ defmodule UITest do
     end
   end
 
-  describe "#display_board" do
+  describe "#display_board/1" do
     defmodule TestPresenter do
       def present(board) do
         board

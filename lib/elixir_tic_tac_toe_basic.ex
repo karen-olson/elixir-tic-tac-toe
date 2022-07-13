@@ -1,6 +1,6 @@
 defmodule ElixirTicTacToeBasic do
   @moduledoc """
-  This module creates a Game struct and starts running the game.
+  This module starts the game.
   """
 
   defstruct [:ui]
