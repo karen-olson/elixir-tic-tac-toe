@@ -37,10 +37,16 @@ mix test
 ```
 
 ## Usage
+### Build the program
+From program directory: 
+```
+mix escript.build
+```
+
 ### Launch the program
 From program directory:
 ```
-mix run
+./elixir_tic_tac_toe_basic
 ```
 
 ### Instructions

@@ -1,11 +1,13 @@
 defmodule ElixirTicTacToeBasic do
   @moduledoc """
-  Basic Tic Tac Toe Game
+  This module starts the game.
   """
 
-  def welcome do
-    IO.puts("Welcome to Tic Tac Toe!")
+  defstruct [:ui]
+
+  def start(%{ui: ui} = config) do
+    config
+    |> ui.welcome()
+    |> ui.display_board()
   end
 end
-
-ElixirTicTacToeBasic.welcome()
