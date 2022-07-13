@@ -38,3 +38,11 @@
     When you pass in a test game struct to each protocol (?),
     it does something totally different than if you pass in a real game struct
     like logging the event rather than printing to the console.
+
+
+## NEW PLAN
+
+  ### Finish Displaying Board
+    - Test and build BoardPresenter module (instead of Board)
+    - Wire up the real Presenter in the EScript
+    - Delete the extra stuff

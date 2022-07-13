@@ -3,7 +3,11 @@ defmodule ElixirTicTacToeBasic do
   This module creates a Game struct and starts running the game.
   """
 
-  game = %Game{}
+  defstruct [:ui]
 
-  Main.play(game)
+  def start(%{ui: ui} = config) do
+    config
+    |> ui.welcome()
+    |> ui.display_board()
+  end
 end
