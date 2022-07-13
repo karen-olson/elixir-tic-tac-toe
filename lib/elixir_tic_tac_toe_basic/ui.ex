@@ -3,13 +3,22 @@ defmodule ElixirTicTacToeBasic.UI do
   Provides a user interface.
   """
 
-  def welcome(state, callback \\ fn m -> IO.puts(m) end) do
+  def welcome(
+        state,
+        callback \\ fn message ->
+          IO.puts(message)
+          message
+        end
+      ) do
     record_message(state, callback.("Welcome to Tic Tac Toe!"))
   end
 
   def display_board(
         %{presenter: presenter, board: board} = state,
-        callback \\ fn m -> IO.puts(m) end
+        callback \\ fn message ->
+          IO.puts(message)
+          message
+        end
       ) do
     record_message(state, callback.(presenter.present(board)))
   end

@@ -3,7 +3,7 @@ defmodule ElixirTicTacToeBasic.CLI do
   Starts the program.
   """
 
-  def main(_args) do
+  def main() do
     ElixirTicTacToeBasic.start(%{
       ui: ElixirTicTacToeBasic.UI,
       presenter: ElixirTicTacToeBasic.Presenter,
