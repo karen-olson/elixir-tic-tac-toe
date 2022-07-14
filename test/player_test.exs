@@ -2,6 +2,12 @@ defmodule PlayerTest do
   use ExUnit.Case
   doctest ElixirTicTacToeBasic.Player
 
+  defmodule TestPrompter do
+    def get_input do
+      {1, 1}
+    end
+  end
+
   describe "#move" do
     test "it places a mark in the player's selected space" do
       state = %{
@@ -15,7 +21,9 @@ defmodule PlayerTest do
           {2, 0} => 7,
           {2, 1} => 8,
           {2, 2} => 9
-        }
+        },
+        prompter: PlayerTest.TestPrompter,
+        current_player: "X"
       }
 
       board_with_first_move = %{
