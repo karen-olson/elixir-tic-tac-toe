@@ -46,3 +46,17 @@
     - Test and build BoardPresenter module (instead of Board)
     - Wire up the real Presenter in the EScript
     - Delete the extra stuff
+
+
+## Mix escript.build before testing
+
+  - Removed ```Mix.Shell.Process.cmd("mix escript.build")``` from acceptance test (above other shell process command)
+  - Not having any issues running the tests atm
+  - If something happens, try:
+    - adding aliases: aliases() to mix.exs project fn
+    - creating an aliases fn in mix.exs (see docs about augmenting existing tasks[https://hexdocs.pm/mix/1.13/Mix.html#module-aliases])
+      defp aliases do
+        [
+          test: ["escript.build", "test"]
+        ]
+      end
