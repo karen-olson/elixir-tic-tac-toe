@@ -9,7 +9,8 @@ defmodule ElixirTicTacToeBasic.MixProject do
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
-      escript: escript()
+      escript: escript(),
+      aliases: aliases()
     ]
   end
 
@@ -33,5 +34,11 @@ defmodule ElixirTicTacToeBasic.MixProject do
 
   defp escript do
     [main_module: ElixirTicTacToeBasic.CLI]
+  end
+
+  defp aliases do
+    [
+      test: ["escript.build", "test"]
+    ]
   end
 end
