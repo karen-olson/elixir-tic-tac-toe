@@ -6,8 +6,7 @@ defmodule AcceptanceTest do
       Mix.Shell.Process.cmd("mix escript.build")
       Mix.Shell.Process.cmd("./elixir_tic_tac_toe_basic")
 
-      assert_received {_, _, ["Welcome to Tic Tac Toe!\n"]}
-      assert_received {_, _, [_empty_board]}
+      assert_received {_, _, ["Welcome" <> _rest]}
 
       Mix.Shell.Process.flush()
     end
