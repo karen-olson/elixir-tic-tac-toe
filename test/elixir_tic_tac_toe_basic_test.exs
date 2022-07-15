@@ -12,19 +12,30 @@ defmodule ElixirTicTacToeBasicTest do
     end
   end
 
+  defmodule TestPlayer do
+    def move(state) do
+      Map.put(state, :board, "updated board")
+    end
+  end
+
   describe "#start" do
     test "it starts the game" do
       config =
         ElixirTicTacToeBasic.start(%ElixirTicTacToeBasic{
-          ui: TestUI
+          ui: TestUI,
+          player: TestPlayer
         })
 
-      events = Map.get(config, :events, []) |> Enum.reverse()
+      %{events: events, board: board} = config
+      events = Enum.reverse(events)
 
       assert events == [
                "welcome",
+               "display board",
                "display board"
              ]
+
+      assert board == "updated board"
     end
   end
 end

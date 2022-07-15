@@ -7,17 +7,10 @@ defmodule ElixirTicTacToeBasic.CLI do
     ElixirTicTacToeBasic.start(%{
       ui: ElixirTicTacToeBasic.UI,
       presenter: ElixirTicTacToeBasic.Presenter,
-      board: %{
-        {0, 0} => 1,
-        {0, 1} => 2,
-        {0, 2} => 3,
-        {1, 0} => 4,
-        {1, 1} => 5,
-        {1, 2} => 6,
-        {2, 0} => 7,
-        {2, 1} => 8,
-        {2, 2} => 9
-      }
+      player: ElixirTicTacToeBasic.Player,
+      board: Helpers.EmptyBoard.empty_board(),
+      current_player: "X",
+      current_move: nil
     })
   end
 end

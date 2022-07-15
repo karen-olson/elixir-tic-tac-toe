@@ -19,7 +19,7 @@ defmodule ElixirTicTacToeBasic.UI do
 
   defp record_message(state, message) do
     Map.update(state, :messages, [message], fn messages ->
-      [message | messages] |> Enum.reverse()
+      [message | messages]
     end)
   end
 end

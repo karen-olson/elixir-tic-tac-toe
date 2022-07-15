@@ -26,4 +26,4 @@ elixir_tic_tac_toe_basic-*.tar
 /tmp/
 
 # Ignore Elixir TTT Basic Binary File
-elixir_tic_tac_toe_basic
+./elixir_tic_tac_toe_basic

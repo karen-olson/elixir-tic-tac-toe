@@ -3,7 +3,16 @@ defmodule IntegrationTest do
 
   describe "integration" do
     test "it plays the game" do
-      %{messages: messages} = ElixirTicTacToeBasic.CLI.main()
+      %{messages: messages} =
+        ElixirTicTacToeBasic.start(%{
+          ui: ElixirTicTacToeBasic.UI,
+          presenter: ElixirTicTacToeBasic.Presenter,
+          prompter: ElixirTicTacToeBasic.Prompter,
+          player: ElixirTicTacToeBasic.Player,
+          board: Helpers.EmptyBoard.empty_board(),
+          current_player: "X",
+          current_move: 5
+        })
 
       empty_board = """
        1 | 2 | 3
@@ -20,6 +29,8 @@ defmodule IntegrationTest do
       ---+---+---
        7 | 8 | 9
       """
+
+      messages = Enum.reverse(messages)
 
       assert messages == [
                "Welcome to Tic Tac Toe!",
