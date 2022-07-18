@@ -18,7 +18,7 @@ defmodule ElixirTicTacToeBasic.Prompter do
     error_prompt = "Please enter a valid number (1-9).\n"
 
     gets.(state, error_prompt)
-    |> integer_or_error()
+    |> validate()
     |> get_input(gets)
   end
 
@@ -26,21 +26,26 @@ defmodule ElixirTicTacToeBasic.Prompter do
     initial_prompt = "Please choose a space.\n"
 
     gets.(state, initial_prompt)
-    |> integer_or_error()
+    |> validate()
     |> get_input(gets)
   end
 
-  defp integer_or_error(%{current_move: selection} = state) do
+  defp validate(%{current_move: selection, board: board} = state) do
     converted_selection =
       selection
       |> String.trim()
       |> Integer.parse()
-      |> extract_integer()
+      |> validate_integer()
+      |> validate_availability(board)
 
     Map.put(state, :current_move, converted_selection)
   end
 
-  defp extract_integer(selection) do
+  defp validate_integer(selection) do
     if selection == :error, do: selection, else: elem(selection, 0)
+  end
+
+  defp validate_availability(selection, board) do
+    if Map.get(board, selection) in 1..9, do: selection, else: :error
   end
 end
