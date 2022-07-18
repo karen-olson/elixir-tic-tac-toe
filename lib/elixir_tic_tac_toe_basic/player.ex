@@ -3,9 +3,9 @@ defmodule ElixirTicTacToeBasic.Player do
   This module provides functions for making moves in the game.
   """
 
-  def move(state) do
+  def move(%{prompter: prompter} = state) do
     state
-    |> ElixirTicTacToeBasic.Prompter.get_input()
+    |> prompter.get_input()
     |> update_board()
   end
 

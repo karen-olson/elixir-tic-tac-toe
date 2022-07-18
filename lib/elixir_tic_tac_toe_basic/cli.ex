@@ -7,8 +7,9 @@ defmodule ElixirTicTacToeBasic.CLI do
     ElixirTicTacToeBasic.start(%{
       ui: ElixirTicTacToeBasic.UI,
       presenter: ElixirTicTacToeBasic.Presenter,
+      prompter: ElixirTicTacToeBasic.Prompter,
       player: ElixirTicTacToeBasic.Player,
-      board: Helpers.EmptyBoard.empty_board(),
+      board: ElixirTicTacToeBasic.Board.new(),
       current_player: "X",
       current_move: nil
     })

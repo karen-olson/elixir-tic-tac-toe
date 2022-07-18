@@ -4,7 +4,7 @@ defmodule PresenterTest do
 
   describe "#present/1" do
     test "it presents a formatted 3x3 board" do
-      board = Helpers.EmptyBoard.empty_board()
+      board = ElixirTicTacToeBasic.Board.new()
 
       formatted_board = ElixirTicTacToeBasic.Presenter.present(board)
 

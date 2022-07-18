@@ -1,9 +1,9 @@
-defmodule Helpers.EmptyBoard do
+defmodule ElixirTicTacToeBasic.Board do
   @moduledoc """
-  This module returns an empty board.
+  This module constructs a new board and holds board state
   """
 
-  def empty_board() do
+  def new() do
     %{
       1 => 1,
       2 => 2,

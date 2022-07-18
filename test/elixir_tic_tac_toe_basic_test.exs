@@ -8,13 +8,13 @@ defmodule ElixirTicTacToeBasicTest do
     end
 
     def display_board(state) do
-      Map.update(state, :events, ["display board"], fn events -> ["display board" | events] end)
+      Map.update(state, :events, [], fn events -> ["display board" | events] end)
     end
   end
 
   defmodule TestPlayer do
     def move(state) do
-      Map.put(state, :board, "updated board")
+      Map.update(state, :events, [], fn events -> ["player moves" | events] end)
     end
   end
 
@@ -26,16 +26,15 @@ defmodule ElixirTicTacToeBasicTest do
           player: TestPlayer
         })
 
-      %{events: events, board: board} = config
+      %{events: events} = config
       events = Enum.reverse(events)
 
       assert events == [
                "welcome",
                "display board",
+               "player moves",
                "display board"
              ]
-
-      assert board == "updated board"
     end
   end
 end
