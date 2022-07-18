@@ -10,8 +10,11 @@ defmodule ElixirTicTacToeBasic.CLI do
       prompter: ElixirTicTacToeBasic.Prompter,
       player: ElixirTicTacToeBasic.Player,
       board: ElixirTicTacToeBasic.Board.new(),
-      current_player: "X",
-      current_move: nil
+      current_player: nil,
+      current_move: nil,
+      gets: fn state, prompt ->
+        Map.put(state, :current_move, IO.gets(prompt))
+      end
     })
   end
 end

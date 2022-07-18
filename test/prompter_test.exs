@@ -6,7 +6,10 @@ defmodule PrompterTest do
     test "it stores valid input in state" do
       state = %{
         current_move: nil,
-        board: ElixirTicTacToeBasic.Board.new()
+        board: ElixirTicTacToeBasic.Board.new(),
+        default_gets: fn state, prompt ->
+          Map.put(state, :current_move, IO.gets(prompt))
+        end
       }
 
       user_input = "1\n"
@@ -82,10 +85,10 @@ defmodule PrompterTest do
 
       assert messages == [
                "Please choose a space.\n",
-               "Please enter a valid number (1-9).\n",
-               "Please enter a valid number (1-9).\n",
-               "Please enter a valid number (1-9).\n",
-               "Please enter a valid number (1-9).\n"
+               "Please enter a valid number.\n",
+               "Please enter a valid number.\n",
+               "Please enter a valid number.\n",
+               "Please enter a valid number.\n"
              ]
 
       Helpers.Stack.teardown()
