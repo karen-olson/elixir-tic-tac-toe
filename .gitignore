@@ -24,3 +24,6 @@ elixir_tic_tac_toe_basic-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Ignore Elixir TTT Basic Binary File
+./elixir_tic_tac_toe_basic

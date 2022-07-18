@@ -6,7 +6,7 @@ defmodule UITest do
     test "it welcomes the user" do
       %{messages: messages} = UI.welcome(%{}, fn message -> String.upcase(message) end)
 
-      assert messages == ["WELCOME TO TIC TAC TOE!"]
+      assert Enum.reverse(messages) == ["WELCOME TO TIC TAC TOE!"]
     end
 
     test "it welcomes the user multiple times in a row" do
@@ -15,7 +15,7 @@ defmodule UITest do
         |> UI.welcome(fn message -> String.upcase(message) end)
         |> UI.welcome(fn message -> String.downcase(message) end)
 
-      assert messages == ["WELCOME TO TIC TAC TOE!", "welcome to tic tac toe!"]
+      assert Enum.reverse(messages) == ["WELCOME TO TIC TAC TOE!", "welcome to tic tac toe!"]
     end
   end
 
@@ -34,7 +34,7 @@ defmodule UITest do
         %{presenter: TestPresenter, board: board}
         |> UI.display_board(callback)
 
-      assert messages == ["BOARD"]
+      assert Enum.reverse(messages) == ["BOARD"]
     end
 
     test "it displays the board multiple times in a row" do
@@ -45,7 +45,7 @@ defmodule UITest do
         |> UI.display_board(fn message -> String.upcase(message) end)
         |> UI.display_board(fn message -> String.downcase(message) end)
 
-      assert messages == ["BOARD", "board"]
+      assert Enum.reverse(messages) == ["BOARD", "board"]
     end
   end
 end

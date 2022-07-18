@@ -3,11 +3,12 @@ defmodule AcceptanceTest do
 
   describe "acceptance" do
     test "the game works when run from the command line" do
-      Mix.Shell.Process.cmd("./elixir_tic_tac_toe_basic")
+      {status, %Rambo{out: output}} = Rambo.run("./elixir_tic_tac_toe_basic", in: "5\n")
 
-      assert_received {_, _, ["Welcome" <> _rest]}
+      output = String.downcase(output)
 
-      Mix.Shell.Process.flush()
+      assert String.contains?(output, "welcome")
+      assert String.contains?(output, "4 | x | 6")
     end
   end
 end
