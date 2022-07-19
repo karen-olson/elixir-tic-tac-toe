@@ -9,6 +9,7 @@ defmodule ElixirTicTacToeBasic.CLI do
       presenter: ElixirTicTacToeBasic.Presenter,
       prompter: ElixirTicTacToeBasic.Prompter,
       player: ElixirTicTacToeBasic.Player,
+      validator: ElixirTicTacToeBasic.Validator,
       board: ElixirTicTacToeBasic.Board.new(),
       current_player: nil,
       current_move: nil,
