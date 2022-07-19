@@ -3,31 +3,25 @@ defmodule ElixirTicTacToeBasic.Prompter do
   Prompts the user and returns valid input
   """
 
-  def get_input(
-        state,
-        gets \\ fn state, prompt ->
-          Map.put(state, :current_move, IO.gets(prompt))
-        end
-      )
-
-  def get_input(%{current_move: prev_selection} = state, _gets) when prev_selection in 1..9 do
+  def get_input(%{current_move: prev_selection} = state) when prev_selection in 1..9 do
     state
   end
 
-  def get_input(%{current_move: prev_selection} = state, gets) when not is_nil(prev_selection) do
+  def get_input(%{current_move: prev_selection, gets: gets} = state)
+      when not is_nil(prev_selection) do
     error_prompt = "Please enter a valid number.\n"
 
     gets.(state, error_prompt)
     |> validate()
-    |> get_input(gets)
+    |> get_input()
   end
 
-  def get_input(%{current_move: _prev_selection} = state, gets) do
+  def get_input(%{gets: gets} = state) do
     initial_prompt = "Please choose a space.\n"
 
     gets.(state, initial_prompt)
     |> validate()
-    |> get_input(gets)
+    |> get_input()
   end
 
   defp validate(%{current_move: selection, board: board} = state) do

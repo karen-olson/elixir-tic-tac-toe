@@ -3,7 +3,7 @@ defmodule PlayerTest do
   doctest ElixirTicTacToeBasic.Player
 
   defmodule PlayerTest.TestPrompter do
-    def get_input(state, _gets) do
+    def get_input(state) do
       Map.put(state, :current_move, 5)
     end
   end
