@@ -60,21 +60,5 @@ defmodule PlayerTest do
 
       assert board == board_with_o_marker
     end
-
-    test "it resets the current move in state at the end of the turn" do
-      state = %{
-        prompter: PlayerTest.TestPrompter,
-        board: ElixirTicTacToeBasic.Board.new(),
-        current_move: nil,
-        current_player: nil,
-        gets: fn state, prompt ->
-          Map.put(state, :current_move, IO.gets(prompt))
-        end
-      }
-
-      %{current_move: current_move} = ElixirTicTacToeBasic.Player.move(state)
-
-      assert current_move == nil
-    end
   end
 end

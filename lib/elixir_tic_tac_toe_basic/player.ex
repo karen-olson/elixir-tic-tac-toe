@@ -8,7 +8,6 @@ defmodule ElixirTicTacToeBasic.Player do
     |> set_current_player()
     |> prompter.get_input()
     |> update_board()
-    |> reset_current_move()
   end
 
   defp set_current_player(state) do
@@ -23,9 +22,5 @@ defmodule ElixirTicTacToeBasic.Player do
     Map.update(state, :board, board, fn board ->
       Map.put(board, current_move, current_player)
     end)
-  end
-
-  defp reset_current_move(state) do
-    Map.put(state, :current_move, nil)
   end
 end

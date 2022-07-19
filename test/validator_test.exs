@@ -6,17 +6,7 @@ defmodule ValidatorTest do
     test "when input is valid, it returns the selection" do
       state = %{
         current_move: "1\n",
-        board: %{
-          1 => 1,
-          2 => 2,
-          3 => 3,
-          4 => 4,
-          5 => 5,
-          6 => 6,
-          7 => 7,
-          8 => 8,
-          9 => 9
-        }
+        board: ElixirTicTacToeBasic.Board.new()
       }
 
       selection = ElixirTicTacToeBasic.Validator.validate(state)
@@ -27,17 +17,7 @@ defmodule ValidatorTest do
     test "when input is not a valid number, it returns :error" do
       state = %{
         current_move: "asdf\n",
-        board: %{
-          1 => 1,
-          2 => 2,
-          3 => 3,
-          4 => 4,
-          5 => 5,
-          6 => 6,
-          7 => 7,
-          8 => 8,
-          9 => 9
-        }
+        board: ElixirTicTacToeBasic.Board.new()
       }
 
       selection = ElixirTicTacToeBasic.Validator.validate(state)
