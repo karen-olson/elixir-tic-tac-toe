@@ -47,53 +47,5 @@ defmodule PrompterTest do
 
       Helpers.Stack.teardown()
     end
-
-    test "it uses the correct prompt for the situation (error or not)" do
-      user_input = ["abc", "10\n", "-1\n", "5\n", "1\n"]
-      Helpers.Stack.setup(user_input)
-
-      state = %{
-        messages: [],
-        current_move: nil,
-        board: %{
-          1 => 1,
-          2 => 2,
-          3 => 3,
-          4 => 4,
-          5 => "X",
-          6 => 6,
-          7 => 7,
-          8 => 8,
-          9 => 9
-        },
-        gets: fn state, prompt ->
-          Map.put(state, :current_move, Helpers.Stack.pop())
-          |> record_message(prompt)
-        end
-      }
-
-      %{messages: messages, current_move: current_move} =
-        ElixirTicTacToeBasic.Prompter.get_input(state)
-
-      assert current_move == 1
-
-      messages = Enum.reverse(messages)
-
-      assert messages == [
-               "Please choose a space.\n",
-               "Please enter a valid number.\n",
-               "Please enter a valid number.\n",
-               "Please enter a valid number.\n",
-               "Please enter a valid number.\n"
-             ]
-
-      Helpers.Stack.teardown()
-    end
-  end
-
-  defp record_message(state, message) do
-    Map.update(state, :messages, [], fn messages ->
-      [message | messages]
-    end)
   end
 end
