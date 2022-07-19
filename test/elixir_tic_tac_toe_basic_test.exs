@@ -33,6 +33,8 @@ defmodule ElixirTicTacToeBasicTest do
                "welcome",
                "display board",
                "player moves",
+               "display board",
+               "player moves",
                "display board"
              ]
     end
