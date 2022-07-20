@@ -20,6 +20,7 @@ defmodule AcceptanceTest do
 
       assert String.contains?(output, "welcome")
       assert String.contains?(output, full_board)
+      assert String.contains?(output, "goodbye")
     end
   end
 end
