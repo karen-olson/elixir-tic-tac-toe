@@ -10,6 +10,10 @@ defmodule ElixirTicTacToeBasicTest do
     def display_board(state) do
       Map.update(state, :events, [], fn events -> ["display board" | events] end)
     end
+
+    def game_over(state) do
+      Map.update(state, :events, ["game_over"], fn events -> ["game_over" | events] end)
+    end
   end
 
   defmodule TestPlayer do
@@ -18,12 +22,22 @@ defmodule ElixirTicTacToeBasicTest do
     end
   end
 
+  defmodule TestOutcomeChecker do
+    def check_full(_config) do
+      Helpers.Stack.pop()
+    end
+  end
+
   describe "#start" do
     test "it starts the game" do
+      is_full = [false, false, true]
+      Helpers.Stack.setup(is_full)
+
       config =
         ElixirTicTacToeBasic.start(%ElixirTicTacToeBasic{
           ui: TestUI,
-          player: TestPlayer
+          player: TestPlayer,
+          outcome_checker: TestOutcomeChecker
         })
 
       %{events: events} = config
@@ -35,8 +49,13 @@ defmodule ElixirTicTacToeBasicTest do
                "player moves",
                "display board",
                "player moves",
-               "display board"
+               "display board",
+               "player moves",
+               "display board",
+               "game_over"
              ]
+
+      Helpers.Stack.teardown()
     end
   end
 end

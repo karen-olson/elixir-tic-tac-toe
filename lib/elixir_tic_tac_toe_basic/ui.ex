@@ -17,6 +17,13 @@ defmodule ElixirTicTacToeBasic.UI do
     record_message(state, callback.(presenter.present(board)))
   end
 
+  def game_over(
+        state,
+        callback \\ fn message -> IO.puts(message) && message end
+      ) do
+    record_message(state, callback.("Game over. Thanks for playing. Goodbye!"))
+  end
+
   defp record_message(state, message) do
     Map.update(state, :messages, [message], fn messages ->
       [message | messages]

@@ -2,10 +2,22 @@ defmodule IntegrationTest do
   use ExUnit.Case
 
   describe "integration" do
-    test "it plays the game" do
-      user_input = ["5\n", "1\n"]
+    test "it plays the game until the board is full" do
+      user_input = ["8\n", "9\n"]
 
       Helpers.Stack.setup(user_input)
+
+      board_with_two_empty_spaces = %{
+        1 => "O",
+        2 => "X",
+        3 => "O",
+        4 => "X",
+        5 => "O",
+        6 => "X",
+        7 => "O",
+        8 => 8,
+        9 => 9
+      }
 
       %{messages: messages} =
         ElixirTicTacToeBasic.start(%{
@@ -14,7 +26,8 @@ defmodule IntegrationTest do
           prompter: ElixirTicTacToeBasic.Prompter,
           player: ElixirTicTacToeBasic.Player,
           validator: ElixirTicTacToeBasic.Validator,
-          board: ElixirTicTacToeBasic.Board.new(),
+          outcome_checker: ElixirTicTacToeBasic.OutcomeChecker,
+          board: board_with_two_empty_spaces,
           current_player: nil,
           current_move: nil,
           gets: fn state, _prompt ->
@@ -22,37 +35,38 @@ defmodule IntegrationTest do
           end
         })
 
-      empty_board = """
-       1 | 2 | 3
+      board = """
+       O | X | O
       ---+---+---
-       4 | 5 | 6
+       X | O | X
       ---+---+---
-       7 | 8 | 9
+       O | 8 | 9
       """
 
-      board_with_first_move = """
-       1 | 2 | 3
+      board_with_x_move = """
+       O | X | O
       ---+---+---
-       4 | X | 6
+       X | O | X
       ---+---+---
-       7 | 8 | 9
+       O | X | 9
       """
 
-      board_with_second_move = """
-       O | 2 | 3
+      full_board = """
+       O | X | O
       ---+---+---
-       4 | X | 6
+       X | O | X
       ---+---+---
-       7 | 8 | 9
+       O | X | O
       """
 
       messages = Enum.reverse(messages)
 
       assert messages == [
                "Welcome to Tic Tac Toe!",
-               empty_board,
-               board_with_first_move,
-               board_with_second_move
+               board,
+               board_with_x_move,
+               full_board,
+               "Game over. Thanks for playing. Goodbye!"
              ]
 
       Helpers.Stack.teardown()
