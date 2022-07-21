@@ -30,6 +30,7 @@ defmodule IntegrationTest do
           board: board_with_two_empty_spaces,
           current_player: nil,
           current_move: nil,
+          game_status_log: [],
           gets: fn state, _prompt ->
             Map.put(state, :current_move, Helpers.Stack.pop())
           end

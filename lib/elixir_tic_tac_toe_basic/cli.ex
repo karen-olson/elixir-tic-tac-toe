@@ -14,6 +14,7 @@ defmodule ElixirTicTacToeBasic.CLI do
       board: ElixirTicTacToeBasic.Board.new(),
       current_player: nil,
       current_move: nil,
+      game_status_log: [],
       gets: fn state, prompt ->
         Map.put(state, :current_move, IO.gets(prompt))
       end

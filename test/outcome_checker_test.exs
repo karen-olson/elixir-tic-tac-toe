@@ -2,7 +2,7 @@ defmodule OutcomeCheckerTest do
   use ExUnit.Case
   doctest ElixirTicTacToeBasic.OutcomeChecker
 
-  test "it correctly determines when the board is full" do
+  test "it correctly logs the status when the game is over" do
     config_with_full_board = %{
       board: %{
         1 => "X",
@@ -14,15 +14,36 @@ defmodule OutcomeCheckerTest do
         7 => "X",
         8 => "O",
         9 => "X"
-      }
+      },
+      game_status_log: [
+        :in_progress,
+        :in_progress,
+        :in_progress,
+        :in_progress,
+        :in_progress,
+        :in_progress,
+        :in_progress,
+        :in_progress
+      ]
     }
 
-    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config_with_full_board)
+    %{game_status_log: game_status_log} =
+      ElixirTicTacToeBasic.OutcomeChecker.game_status(config_with_full_board)
 
-    assert is_game_over == true
+    assert game_status_log == [
+             :game_over,
+             :in_progress,
+             :in_progress,
+             :in_progress,
+             :in_progress,
+             :in_progress,
+             :in_progress,
+             :in_progress,
+             :in_progress
+           ]
   end
 
-  test "it correctly determines when the board is not full" do
+  test "it correctly logs the status when the game is in progress" do
     config_with_empty_board = %{
       board: %{
         1 => 1,
@@ -34,11 +55,13 @@ defmodule OutcomeCheckerTest do
         7 => 7,
         8 => 8,
         9 => 9
-      }
+      },
+      game_status_log: []
     }
 
-    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config_with_empty_board)
+    %{game_status_log: game_status_log} =
+      ElixirTicTacToeBasic.OutcomeChecker.game_status(config_with_empty_board)
 
-    assert is_game_over == false
+    assert game_status_log == [:in_progress]
   end
 end

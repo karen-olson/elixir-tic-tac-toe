@@ -23,21 +23,29 @@ defmodule ElixirTicTacToeBasicTest do
   end
 
   defmodule TestOutcomeChecker do
-    def is_game_over(_config) do
-      Helpers.Stack.pop()
+    def game_status(%{game_status_log: game_status_log} = config)
+        when length(game_status_log) < 2 do
+      Map.update(config, :game_status_log, [:in_progress], fn game_status_log ->
+        [:in_progress | game_status_log]
+      end)
+    end
+
+    def game_status(%{game_status_log: game_status_log} = config)
+        when length(game_status_log) == 2 do
+      Map.update(config, :game_status_log, [], fn game_status_log ->
+        [:game_over | game_status_log]
+      end)
     end
   end
 
   describe "#start" do
-    test "it starts the game" do
-      is_game_over = [false, false, true]
-      Helpers.Stack.setup(is_game_over)
-
+    test "it runs the game" do
       config =
         ElixirTicTacToeBasic.start(%{
           ui: TestUI,
           player: TestPlayer,
-          outcome_checker: TestOutcomeChecker
+          outcome_checker: TestOutcomeChecker,
+          game_status_log: []
         })
 
       %{events: events} = config
@@ -54,8 +62,6 @@ defmodule ElixirTicTacToeBasicTest do
                "display board",
                "game_over"
              ]
-
-      Helpers.Stack.teardown()
     end
   end
 end
