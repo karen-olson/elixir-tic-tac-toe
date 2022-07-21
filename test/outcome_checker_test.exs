@@ -17,9 +17,9 @@ defmodule OutcomeCheckerTest do
       }
     }
 
-    is_full = ElixirTicTacToeBasic.OutcomeChecker.check_full(config)
+    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config)
 
-    assert is_full == true
+    assert is_game_over == true
   end
 
   test "it correctly determines when the board is not full" do
@@ -37,8 +37,8 @@ defmodule OutcomeCheckerTest do
       }
     }
 
-    is_full = ElixirTicTacToeBasic.OutcomeChecker.check_full(config)
+    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config)
 
-    assert is_full == false
+    assert is_game_over == false
   end
 end

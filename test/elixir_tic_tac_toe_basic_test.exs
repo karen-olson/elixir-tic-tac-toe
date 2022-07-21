@@ -23,15 +23,15 @@ defmodule ElixirTicTacToeBasicTest do
   end
 
   defmodule TestOutcomeChecker do
-    def check_full(_config) do
+    def is_game_over(_config) do
       Helpers.Stack.pop()
     end
   end
 
   describe "#start" do
     test "it starts the game" do
-      is_full = [false, false, true]
-      Helpers.Stack.setup(is_full)
+      is_game_over = [false, false, true]
+      Helpers.Stack.setup(is_game_over)
 
       config =
         ElixirTicTacToeBasic.start(%ElixirTicTacToeBasic{

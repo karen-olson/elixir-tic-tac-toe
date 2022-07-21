@@ -21,9 +21,9 @@ defmodule ElixirTicTacToeBasic do
   defp play_game(%{outcome_checker: outcome_checker} = config) do
     config = take_turn(config)
 
-    is_full = outcome_checker.check_full(config)
+    is_game_over = outcome_checker.is_game_over(config)
 
-    if is_full, do: config, else: play_game(config)
+    if is_game_over, do: config, else: play_game(config)
   end
 
   defp take_turn(%{ui: ui, player: player} = config) do
