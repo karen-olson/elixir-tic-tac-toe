@@ -23,7 +23,10 @@ defmodule ElixirTicTacToeBasic do
 
     is_game_over = outcome_checker.is_game_over(config)
 
-    if is_game_over, do: config, else: play_game(config)
+    case is_game_over do
+      false -> play_game(config)
+      true -> config
+    end
   end
 
   defp take_turn(%{ui: ui, player: player} = config) do
