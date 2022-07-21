@@ -12,7 +12,7 @@ defmodule ElixirTicTacToeBasicTest do
     end
 
     def game_over(state) do
-      Map.update(state, :events, ["game_over"], fn events -> ["game_over" | events] end)
+      Map.update(state, :events, [], fn events -> ["game_over" | events] end)
     end
   end
 
@@ -34,7 +34,7 @@ defmodule ElixirTicTacToeBasicTest do
       Helpers.Stack.setup(is_game_over)
 
       config =
-        ElixirTicTacToeBasic.start(%ElixirTicTacToeBasic{
+        ElixirTicTacToeBasic.start(%{
           ui: TestUI,
           player: TestPlayer,
           outcome_checker: TestOutcomeChecker

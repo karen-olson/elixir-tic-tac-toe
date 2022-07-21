@@ -3,8 +3,6 @@ defmodule ElixirTicTacToeBasic do
   This module starts the game.
   """
 
-  defstruct [:ui, :player, :outcome_checker]
-
   def start(config) do
     config
     |> start_game()
