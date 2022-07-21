@@ -3,7 +3,7 @@ defmodule OutcomeCheckerTest do
   doctest ElixirTicTacToeBasic.OutcomeChecker
 
   test "it correctly determines when the board is full" do
-    config = %{
+    config_with_full_board = %{
       board: %{
         1 => "X",
         2 => "O",
@@ -17,13 +17,13 @@ defmodule OutcomeCheckerTest do
       }
     }
 
-    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config)
+    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config_with_full_board)
 
     assert is_game_over == true
   end
 
   test "it correctly determines when the board is not full" do
-    config = %{
+    config_with_empty_board = %{
       board: %{
         1 => 1,
         2 => 2,
@@ -37,7 +37,7 @@ defmodule OutcomeCheckerTest do
       }
     }
 
-    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config)
+    is_game_over = ElixirTicTacToeBasic.OutcomeChecker.is_game_over(config_with_empty_board)
 
     assert is_game_over == false
   end
