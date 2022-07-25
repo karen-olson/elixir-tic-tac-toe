@@ -48,4 +48,24 @@ defmodule UITest do
       assert Enum.reverse(messages) == ["BOARD", "board"]
     end
   end
+
+  describe "#game_over/1" do
+    test "it shows the user a game over message" do
+      %{messages: messages} = UI.game_over(%{}, fn message -> String.upcase(message) end)
+
+      assert Enum.reverse(messages) == ["GAME OVER. THANKS FOR PLAYING. GOODBYE!"]
+    end
+
+    test "it shows the game over message multiple times in a row" do
+      %{messages: messages} =
+        %{}
+        |> UI.game_over(fn message -> String.upcase(message) end)
+        |> UI.game_over(fn message -> String.downcase(message) end)
+
+      assert Enum.reverse(messages) == [
+               "GAME OVER. THANKS FOR PLAYING. GOODBYE!",
+               "game over. thanks for playing. goodbye!"
+             ]
+    end
+  end
 end

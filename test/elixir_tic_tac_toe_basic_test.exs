@@ -10,6 +10,10 @@ defmodule ElixirTicTacToeBasicTest do
     def display_board(state) do
       Map.update(state, :events, [], fn events -> ["display board" | events] end)
     end
+
+    def game_over(state) do
+      Map.update(state, :events, [], fn events -> ["game_over" | events] end)
+    end
   end
 
   defmodule TestPlayer do
@@ -18,12 +22,30 @@ defmodule ElixirTicTacToeBasicTest do
     end
   end
 
+  defmodule TestOutcomeChecker do
+    def game_status(%{game_status_log: game_status_log} = config)
+        when length(game_status_log) < 2 do
+      Map.update(config, :game_status_log, [:in_progress], fn game_status_log ->
+        [:in_progress | game_status_log]
+      end)
+    end
+
+    def game_status(%{game_status_log: game_status_log} = config)
+        when length(game_status_log) == 2 do
+      Map.update(config, :game_status_log, [], fn game_status_log ->
+        [:game_over | game_status_log]
+      end)
+    end
+  end
+
   describe "#start" do
-    test "it starts the game" do
+    test "it runs the game" do
       config =
-        ElixirTicTacToeBasic.start(%ElixirTicTacToeBasic{
+        ElixirTicTacToeBasic.start(%{
           ui: TestUI,
-          player: TestPlayer
+          player: TestPlayer,
+          outcome_checker: TestOutcomeChecker,
+          game_status_log: []
         })
 
       %{events: events} = config
@@ -35,7 +57,10 @@ defmodule ElixirTicTacToeBasicTest do
                "player moves",
                "display board",
                "player moves",
-               "display board"
+               "display board",
+               "player moves",
+               "display board",
+               "game_over"
              ]
     end
   end
