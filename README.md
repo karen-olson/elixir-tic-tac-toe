@@ -1,4 +1,4 @@
-# Elixir Tic-Tac-Toe Basic
+# Elixir Tic-Tac-Toe
 
 This Tic Tac Toe game is a command line application built in Elixir.
 The initial functionality permits gameplay between two human players. The program will exit when gameplay ends: either when a player has won, or if the game has reached a draw.
