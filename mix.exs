@@ -4,8 +4,8 @@ defmodule ElixirTicTacToeBasic.MixProject do
   def project do
     [
       app: :elixir_tic_tac_toe_basic,
-      version: "0.1.0",
-      elixir: "~> 1.13.4",
+      version: "0.1.1",
+      elixir: "~> 1.14",
       start_permanent: Mix.env() == :prod,
       elixirc_paths: elixirc_paths(Mix.env()),
       deps: deps(),
